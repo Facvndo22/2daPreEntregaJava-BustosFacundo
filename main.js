@@ -1,50 +1,156 @@
-//CONDICIONAL IF, ELSE con WHILE y SWITCH
 
-let catalogo = '\n1. HAMBURGUESAS \n2. LOMOS \n3. PAPAS \n4. GASEOSAS \n5. AGUAS'
-let edad = Number(prompt('Ingrese su edad'))
-let mayorDeEdad = (edad >= 18)
+//Declaración Productos
+let hamburguesa="Hamburguesa";
+let lomo="Lomo";
+let papasFritas="Papas Fritas";
+let gaseosa="Gaseosa";
+let aguaMineral="Agua Mineral";
+let postre="Postre";
+let vino="Vino";
+let cerveza="Cerveza";
+let resumen="\n";
 
-if (mayorDeEdad){
-    console.info('Usuario Mayor de edad')
-    catalogo += '\n6. BEBIDAS ALCOHOLICAS'
-}else{
-    console.info('Usuario Menor de Edad')
-    catalogo += '\n7. POSTRES'
-}
+//Precios de los Productos
+let hamburguesaPrecio=1000;
+let lomoPrecio=1200;
+let papasPrecio=800;
+let gaseosaPrecio=500;
+let aguaPrecio=250;
+let postrePrecio=400;
+let vinoPrecio=1000;
+let cervezaPrecio=700;
+let precioTotal=0;
 
-const alertMessage = 'Bienvenido/a! Le mostramos nuestro CATÁLOGO DISPONIBLE: ' + catalogo
-alert(alertMessage)
-let eleccion = prompt('¿Qué Desear Comprar?: '+catalogo)
-
-while (eleccion !='ESC'){
-    switch (eleccion.toUpperCase()){
+//Comida
+function pedidoComida() {
+    let comida=prompt("1-Hamburguesa \n2-Lomo \n3-Papas Fritas \n4-Postre \n5-Volver")
+    switch (comida) {
         case "1":
-            alert('Perfecto! Agregaste una Hamburguesa a tu pedido!');
+            alert("Hamburguesa agregada a su Pedido");
+            precioTotal = precioTotal + hamburguesaPrecio;
+            resumen = resumen + hamburguesa + "\n";
             break;
         case "2":
-            alert('Perfecto! Agregaste un Lomo a tu pedido!');
+            alert("Lomo agregado a su Pedido");
+            precioTotal = precioTotal + lomoPrecio;
+            resumen = resumen + lomo + "\n";
             break;
         case "3":
-            alert('Perfecto! Agregaste unas Papas a tu pedido!');
+            alert("Papas agregadas a su Pedido");
+            precioTotal = precioTotal + papasPrecio;
+            resumen = resumen + papasFritas + "\n";
             break;
         case "4":
-            alert('Perfecto! Agregaste una Gaseosa a tu pedido!');
+            alert("Postre agregado a su Pedido");
+            precioTotal = precioTotal + postrePrecio;
+            resumen = resumen + postre + "\n";
             break;
         case "5":
-            alert('Perfecto! Agregaste un Agua a tu pedido!');
-            break;
-        case "7":
-            alert('Perfecto! Agregaste un Postre a tu pedido!');
-            break;
-        case "6":
-            let eleccion2 = prompt('Perfecto! Tenemos: \n8. VINO \n9. CERVEZA, ¿Qué Desea?')
-            if(eleccion2 === "8"){
-                alert('Perfecto! Agregaste un Vino a tu pedido!');
-            }else if(eleccion2 === "9"){
-                alert('Perfecto! Agregaste una Cerveza a tu pedido!');
-            };
             break;
         default:
-            alert('Disculpe! No tenemos por el momento!')
-    }eleccion = prompt('¿Qué Desear Comprar?: '+catalogo)
+            alert("Opción no válida");
+            break;
+    }
 }
+
+//Bebidas
+function pedidoBebida() {
+    let bebida=prompt("1-Gaseosa \n2-Agua Mineral \n3-Vino \n4-Cerveza \n5-Volver")
+    switch (bebida) {
+        case "1":
+            alert("Gaseosa agregada a su Pedido");
+            precioTotal = precioTotal + gaseosaPrecio;
+            resumen = resumen + gaseosa + "\n";
+            break;
+        case "2":
+            alert("Agua Mineral agregada a su Pedido");
+            precioTotal = precioTotal + aguaPrecio;
+            resumen = resumen + aguaMineral + "\n";
+            break;
+        case "3":
+            alert("Vino agregado a su Pedido");
+            precioTotal = precioTotal + vinoPrecio;
+            resumen = resumen + vino + "\n";
+            break;
+        case "4":
+            alert("Cerveza agregada a su Pedido");
+            precioTotal = precioTotal + cervezaPrecio;
+            resumen = resumen + cerveza + "\n";
+            break;
+        case "5":
+            break;
+        default:
+            alert("Opción no válida");
+            break;
+    }
+}
+
+
+//Solicitud Productos
+function productos() {
+
+    let opcion=prompt("SELECCIONE LO QUE DESEA AÑADIR A SU PEDIDO: \n1-Comida \n2-Bebidas \n3-Finalizar");
+
+    while (opcion != "3") {
+        switch (opcion) {
+            case "1":
+                //LLamado a Comida
+                pedidoComida();
+                break;
+            case "2":
+                //LLamado a Bebidas
+                pedidoBebida();
+                break; 
+            default:
+                alert("Opción no válida");
+                break;
+        }
+        opcion=prompt("SELECCIONE LO QUE DESEA AÑADIR A SU PEDIDO: \n1-Comida \n2-Bebidas \n3-Finalizar");
+    }
+}
+
+//Menú
+let nombreUsuario;
+let dniUsuario;
+
+function datosUsuario() {
+
+    nombreUsuario=prompt("INGRESE LOS DATOS: \nNOMBRE Y APELLIDO:");
+    dniUsuario=prompt("DNI: ");
+
+    productos();
+
+}
+
+
+//Registro
+alert("**** MABELES FOOD **** \nComida Al paso");
+
+let nombreRegistro=prompt("BIENVENID@S A MABELES FOOD. \nIngrese su nombre y apellido para registrarse. Con su registro podrá hacer su pedido.");
+
+let passRegistro=prompt("Cree su contraseña.");
+
+let dniRegistro=prompt("Ingrese su DNI");
+
+alert("Ha sido registrado correctamente. Inicie sesión.");
+
+
+//Inicio de sesión
+for (let i=1; i<=3; i++) {
+    let nombreIngreso=prompt("INICIO DE SESION. \nIngrese su nombre y apellido");
+    let passIngreso=prompt("Ingrese su contraseña");
+
+    if (nombreIngreso === nombreRegistro && passIngreso === passRegistro) {
+        alert("INICIO DE SESIÓN CORRECTO. \nHola Sr/a "+nombreIngreso+"\nDNI número: "+dniRegistro);
+        //Llamado a función para presentar datos del usuario
+        datosUsuario();
+        break;
+    } else if (i===3) {
+        alert("Fallaste los tres intentos.");
+    } else {
+        alert("Usuario o contraseña incorrectos. Intente nuevamente.")
+    }
+}
+
+alert("RESUMEN DE SU PEDIDO. \n\nUSUARIO: "+nombreUsuario+"\nDNI: "+dniRegistro+ "\n"+resumen+"\nPRECIO TOTAL: $"+precioTotal);
+alert("EN INSTANTES TENDREMOS SU PEDIDO LISTO.\nMUCHAS GRACIAS !");
